@@ -1,2 +1,37 @@
 <h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+
+<%= form_for @user do |f| %>
+  <div class="form-group">
+    <%= f.label :name , value="Name:" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, value="E-mail address:" %>
+    <%= f.email_field :email, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :age, value= "Enter your age (min 16):" %>
+    <%= f.number_field :age, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :areucook, value= "Check box if you want to register as a cook" %>
+    <%= f.check_box :areucook %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password, value= "Password:" %>
+    <%= f.password_field :password, placeholder: "Enter a good one", class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password, value= "Confirm Password:" %>
+    <%= f.password_field :password_confirmation, placeholder: "Re-enter your awesome password", class: "form-control"  %>
+  </div>
+
+  <div class="actions">
+  <%= f.submit "Create User", class: "btn btn-primary" %>
+  </div>
+
+<% end %>
