@@ -22,8 +22,8 @@
           <a class="navbar-brand" href="<%= user_url(current_user) %>"/> <%= current_user.name %>'s profile</a>
           <a class="navbar-brand" id="Log Out" href="<%= logout_url %>"/>Log Out</a>
         <% else %>
-          <a class="navbar-brand" href="#"/>Sign Up</a>
-          <a class="navbar-brand" href="#"/>Log In</a>
+          <a class="navbar-brand" href="<%= new_user_url %>"/>Sign Up</a>
+          <a class="navbar-brand" href="<%= signin_url %>"/>Log In</a>
         <% end %>
         </div>
         <div class="navbar-collapse collapse">
