@@ -2,8 +2,8 @@
 
 <%= form_for :user do |f| %>
   <div class="form-group">
-    <%= f.label :name, value= "Your name:"%>
-    <%= f.text_field :name, placeholder: "Enter your username", class: "form-control" %>
+    <%= f.label :name, value= "Your email:"%>
+    <%= f.email_field :email, placeholder: "Enter your e-mail", class: "form-control" %>
   </div>
 
   <div class="form-group">
