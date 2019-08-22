@@ -13,6 +13,14 @@
 
   <div class="actions">
   <%= f.submit "Sign In", class: "btn btn-primary" %>
-  </div>
+  </div><br>
 
 <% end %>
+
+<div class="form-group">
+  <p><strong>Or you can also:</strong></p>
+</div>
+
+  <form action="/auth/facebook">
+    <input class="btn btn-primary" type="submit" value="Log in with Facebook" />
+  </form>

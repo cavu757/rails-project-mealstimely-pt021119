@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    binding.pry
     @user = User.find_by(email: user_params[:email])
     if @user
       if @user.authenticate(user_params[:password])
@@ -27,5 +28,9 @@ class SessionsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password)
+  end
+
+  def auth
+    request.env['omniauth.auth']
   end
 end
