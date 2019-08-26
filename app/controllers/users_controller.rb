@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash.alert.clear
+      flash.alert = nil
       redirect_to user_path(@user)
     else
       flash.alert =  "Could not create user.  Please correct highlighted fields."
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :is_cook, :email, :password, :password_confirmation)
   end
 
   def user_new
