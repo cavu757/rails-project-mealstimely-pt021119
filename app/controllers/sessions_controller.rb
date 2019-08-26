@@ -3,19 +3,29 @@ class SessionsController < ApplicationController
   end
 
   def create
-    binding.pry
-    @user = User.find_by(email: user_params[:email])
-    if @user
-      if @user.authenticate(user_params[:password])
-        session[:user_id] = @user.id
-        redirect_to user_path(@user)
+    if !!auth
+      @user = User.find_or_create_by(email: auth['info']['email']) do |u|
+        u.name = auth['info']['name']
+        u.email = auth['info']['email']
+        u.password_digest = SecureRandom.hex
+      end
+      session[:user_id] = @user.id
+      @auth = auth
+      redirect_to user_url(@user)
+    else
+      @user = User.find_by(email: user_params[:email])
+      if @user
+        if @user.authenticate(user_params[:password])
+          session[:user_id] = @user.id
+          redirect_to user_path(@user)
+        else
+          flash.alert = "Could not log you in"
+          redirect_to signin_path
+        end
       else
-        flash.alert = "Could not log you in"
+        flash.alert = "User not found"
         redirect_to signin_path
       end
-    else
-      flash.alert = "User not found"
-      redirect_to signin_path
     end
   end
 

@@ -9,10 +9,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
+      flash.alert.clear
       redirect_to user_path(@user)
     else
-      flash.alert = "Could not create user.  Please try to Sign Up again."
-      redirect_to root_path
+      flash.alert =  "Could not create user.  Please correct highlighted fields."
+      # @user.errors.full_messages.join(" / ")
+      render 'new'
     end
   end
 
@@ -29,7 +31,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :age, :password, :password_confirmation, :areucook)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
   def user_new

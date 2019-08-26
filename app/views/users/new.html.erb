@@ -1,4 +1,8 @@
+
 <h1>Users#new</h1>
+
+<div class="login-box">
+
 
 <%= form_for @user do |f| %>
 
@@ -6,16 +10,11 @@
     <%= f.label :name , value="Name:" %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
+
   <div class="form-group">
     <%= f.label :email, value="E-mail address:" %>
     <%= f.email_field :email, class: "form-control"  %>
   </div>
-
-  <div class="form-group">
-    <%= f.label :age, value= "Enter your age (minimum 16):" %>
-    <%= f.number_field :age, class: "form-control"  %>
-  </div>
-
 
   <div class="form-group">
     <%= f.label :password, value= "Password:" %>
@@ -27,13 +26,26 @@
     <%= f.password_field :password_confirmation, placeholder: "Re-enter your awesome password", class: "form-control"  %>
   </div>
 
-  <div class="form-group">
-    <%= f.check_box :areucook %>
-    <%= f.label :areucook, value= "CHECK BOX IF YOU WANT TO REGISTER AS A COOK " %>
-  </div>
-
   <div class="actions">
   <%= f.submit "Create User", class: "btn btn-primary" %>
   </div>
 
 <% end %>
+<br>
+
+<div class="form-group">
+  <p><strong>Or you can also:</strong></p>
+</div>
+
+<div class="form-group">
+  <form action="/auth/facebook">
+    <input class="btn btn-primary" type="submit" value="Sign Up with Facebook" />
+  </form>
+</div>
+
+</div>
+
+<div class="">
+  <em>To sign up as a cook, <strong><a href="/cooks/new">click here.</a></strong>
+  </em>
+</div>

@@ -36,6 +36,23 @@
    text-align: center;
  }
 
+.login-box {
+  padding: 20px;
+  display: inline-block;
+  background-color: #eeeeee;
+  border-radius: 7px;
+  vertical-align: middle;
+  margin: 10px;
+  text-align: center;
+  width: 50%;
+}
+
+.field_with_errors input {
+  border-style: double;
+  border-color: red;
+  background-color: hsl(0, 100%, 90%);
+}
+
  .pic,
  .info {
    padding: 20px;

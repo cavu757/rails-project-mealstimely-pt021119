@@ -35,6 +35,7 @@
       </div>
     </div>
 
+
     <!-- content -->
     <div class="container"  role="main">
       <% if !flash.alert.nil? %>
@@ -42,13 +43,19 @@
         <%= flash.alert %>
       </div>
       <% end %>
+    </div>
+
+    <!-- yield -->
+    <div class="center">
+
       <%= yield %>
     </div>
+
   </body>
   <footer>
     <div class="footer">
     <% if !!current_user %>
-      <p>-- You are logged in as <%= current_user.email %> --</p>
+      <p>-- You are logged in as <%= current_user.email %> <%= current_user_is_cook? %> --</p>
     <% else %>
       <p>-- You are not logged in --</p>
     <% end %>

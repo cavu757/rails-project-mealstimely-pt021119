@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :meals
+  resources :cooks
   resources :comments
   resources :users
 

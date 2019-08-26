@@ -1,14 +1,13 @@
 <div class="center">
 
   <div class="info">
-    <% if @user[:areucook] %>
+    <% if @user[:is_cook] == "Cook" %>
     <p align="center"><strong>YOU ARE OUR FAVORITE COOK</strong></p>
     <% end %>
     <p><strong>Name:</strong> <%= @user.name %></p>
     <p><strong>E-mail:</strong> <%= @user.email %></p>
-    <p><strong>Age:</strong>  <%= @user.age %></p>
     <p><strong>Rating:</strong> <%= "@user.rating" %></p>
-    <% if @user[:areucook] %>
+    <% if @user[:is_cook] == 'Cook' %>
     <p><a href="/foods">Click here to add to your list or edit your list of food available</a></p>
     <% else %>
     <p><a href="/foods">Click here to see list of food available this week</a></p>
