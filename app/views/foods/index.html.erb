@@ -3,3 +3,14 @@
   <em>If you are a COOK, to add a new food, <strong><a href="/foods/new">click here.</a></strong>
   </em>
 </div>
+
+<% @foods.each do |food| %>
+<div class="index-box">
+<p> Name: <%=link_to food.name, food_url(food) %></p>
+<p><img src="<%=food.picture%>" alt="" width="150px" ></p>
+<p> Description: <%= food.description.truncate(100) %>
+<em><%= link_to "see more", food_url(food) unless food.description.size<99 %></em></p>
+<p> Food Rating: <%= food.food_rating %></p>
+<p><a href="<%=food_url(food)%>">Click to comment</a></p>
+</div>
+<%end%>

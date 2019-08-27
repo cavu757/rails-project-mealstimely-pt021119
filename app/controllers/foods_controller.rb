@@ -6,13 +6,22 @@ class FoodsController < ApplicationController
   end
 
   def create
-    raise params.inspect
+    @food = Food.find_or_create_by(name: food_params[:name]) do |f|
+      f.name = food_params[:name]
+      f.picture = food_params[:picture]
+      f.description = food_params[:description]
+    end
+    redirect_to food_path(@food)
   end
 
   def index
+    @foods = Food.all
+
   end
 
   def show
+    @food = Food.find(params[:id])
+    @meal = Meal.new
   end
 
   def edit

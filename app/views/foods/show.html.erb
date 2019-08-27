@@ -1,0 +1,9 @@
+<h1><%= @food.name %></h1>
+
+<div class="login-box">
+
+<p><img src="<%=@food.picture%>" alt="" width="200px"></p>
+<p> Description: <%= @food.description.truncate(1000) %></p>
+<p> Food Rating: <%= @food.food_rating %></p>
+
+</div>
