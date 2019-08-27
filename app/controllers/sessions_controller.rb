@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
         u.password_digest = SecureRandom.hex(64)
       end
       session[:user_id] = @user.id
-      if
       @auth = auth
       redirect_to user_url(@user)
     else
