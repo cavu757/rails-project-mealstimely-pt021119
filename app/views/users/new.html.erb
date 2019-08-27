@@ -12,6 +12,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.check_box :is_cook %>
+    <%= f.label :is_cook, "Check if you want to sign up as a cook", class: "check-box"  %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :email, value="E-mail address:" %>
     <%= f.email_field :email, class: "form-control"  %>
   </div>
@@ -43,9 +48,4 @@
   </form>
 </div>
 
-</div>
-
-<div class="">
-  <em>To sign up as a cook, <strong><a href="/cooks/new">click here.</a></strong>
-  </em>
 </div>
