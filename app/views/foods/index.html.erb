@@ -1,8 +1,10 @@
 <h1>Foods#index</h1>
+<% if current_user_is_cook %>
 <div class="">
   <em>If you are a COOK, to add a new food, <strong><a href="/foods/new">click here.</a></strong>
   </em>
 </div>
+<% end %>
 
 <% @foods.each do |food| %>
 <div class="index-box">
@@ -11,13 +13,6 @@
 <p> Description: <%= food.description.truncate(100) %>
 <em><%= link_to "see more", food_url(food) unless food.description.size<99 %></em></p>
 <p> Food Rating: <%= food.food_rating %></p>
-<p><a href="<%=food_url(food)%>">Go to food page</a></p>
+<p><a href="<%=food_url(food)%>">Go to food page to add to meal</a></p>
 </div>
 <%end%>
-
-<div class="login-box">
-<%= form_for :meal, url: '/meals' do |f| %>
-<h4><%= f.collection_select :food_id, Food.all, :id, :name %>
-<%= f.submit "Add to Meal", class: "btn btn-primary" %></h4>
-<%end%>
-</div>
