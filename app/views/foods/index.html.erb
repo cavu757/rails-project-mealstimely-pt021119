@@ -1,18 +1,30 @@
 <h1>Foods#index</h1>
 <% if current_user_is_cook %>
-<div class="">
-  <em>If you are a COOK, to add a new food, <strong><a href="/foods/new">click here.</a></strong>
-  </em>
-</div>
-<% end %>
-
-<% @foods.each do |food| %>
-<div class="index-box">
-<p> Name: <%=link_to food.name, food_url(food) %></p>
-<p><img src="<%=food.picture%>" alt="" width="150px" ></p>
-<p> Description: <%= food.description.truncate(100) %>
-<em><%= link_to "see more", food_url(food) unless food.description.size<99 %></em></p>
-<p> Food Rating: <%= food.food_rating %></p>
-<p><a href="<%=food_url(food)%>">Go to food page to add to meal</a></p>
-</div>
+  <div class="">
+    <h4><em>Hello <%= current_user.name %>, to add a new food, <strong><a href="/foods/new">click here.</a></strong>
+    </em></h4>
+  </div>
+  <% @foods.each do |food| %>
+    <% if session[:user_id] == food[:cook_id] %>
+      <div class="index-box">
+      <p> Name: <%=link_to food.name, food_url(food) %></p>
+      <p><img src="<%=food.picture%>" alt="" width="150px" ></p>
+      <p> Description: <%= food.description.truncate(100) %>
+      <em><%= link_to "see more", food_url(food) unless food.description.size<99 %></em></p>
+      <p> Food Rating: <%= food.food_rating %></p>
+      <p> <%= link_to "Go to Food Page to Edit", food_url(food) %> </p>
+      </div>
+    <%end%>
+  <%end%>
+<% else %>
+  <% @foods.each do |food| %>
+    <div class="index-box">
+    <p> Name: <%=link_to food.name, food_url(food) %></p>
+    <p><img src="<%=food.picture%>" alt="" width="150px" ></p>
+    <p> Description: <%= food.description.truncate(100) %>
+    <em><%= link_to "see more", food_url(food) unless food.description.size<99 %></em></p>
+    <p> Food Rating: <%= food.food_rating %></p>
+    <p><a href="<%=food_url(food)%>">Go to food page to add to meal</a></p>
+    </div>
+  <%end%>
 <%end%>

@@ -8,11 +8,16 @@
 
 </div>
 
-
-<div class="login-box">
-  <%= form_for :meal, url: '/meals' do |f| %>
-  <%= f.hidden_field :food_id, :value => @food.id %>
-  <%= f.hidden_field :user_id, :value => session[:user_id] %>
-  <%= f.submit "Create Meal", class: "btn btn-primary" %>
-  <%end%>
-</div>
+<%if current_user_is_cook%>
+  <div class="login-box">
+    <%= link_to "Edit Food", edit_food_path(@food),class: "btn btn-primary" %>
+  </div>
+<%else%>
+  <div class="login-box">
+    <%= form_for :meal, url: '/meals' do |f| %>
+    <%= f.hidden_field :food_id, :value => @food.id %>
+    <%= f.hidden_field :user_id, :value => session[:user_id] %>
+    <%= f.submit "Create Meal", class: "btn btn-primary" %>
+    <%end%>
+  </div>
+<%end%>

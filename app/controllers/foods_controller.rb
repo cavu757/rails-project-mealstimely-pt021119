@@ -6,10 +6,12 @@ class FoodsController < ApplicationController
   end
 
   def create
+    binding.pry
     @food = Food.find_or_create_by(name: food_params[:name]) do |f|
       f.name = food_params[:name]
       f.picture = food_params[:picture]
       f.description = food_params[:description]
+      f.cook_id = food_params[:cook_id]
     end
     redirect_to food_path(@food)
   end
@@ -26,6 +28,7 @@ class FoodsController < ApplicationController
 
   def edit
     not_cook
+    @food = Food.find(params[:id])
   end
 
   def destroy
@@ -39,7 +42,7 @@ class FoodsController < ApplicationController
   end
 
   def food_params
-    params.require(:food).permit(:name, :picture, :description)
+    params.require(:food).permit(:name, :picture, :description, :cook_id)
   end
 
   def not_cook

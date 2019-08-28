@@ -19,7 +19,8 @@
   </div>
 
   <div class="actions">
-  <%= f.submit "Submit New Food", class: "btn btn-primary" %>
+    <%= f.hidden_field :cook_id, :value => session[:user_id] %>
+    <%= f.submit "Submit New Food", class: "btn btn-primary" %>
   </div><br>
 
 <% end %>
