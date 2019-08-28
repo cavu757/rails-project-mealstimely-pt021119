@@ -5,8 +5,6 @@ def index
 end
 
 def create
-  binding.pry
-  raise params.inspect
   @meal = Meal.create(meal_params)
   @food = Food.find(@meal[:food_id])
   @eater = User.find(@meal[:user_id])
@@ -16,8 +14,12 @@ end
 
 def show
   @meal = Meal.find(params[:id])
+  @food = Food.find(@meal[:food_id])
+  @eater = User.find(@meal[:user_id])
+  @cook = User.find(@food.cook_id)
+  @comment = Comment.new
+  @comments = @meal.comments
 end
-
 
 private
 

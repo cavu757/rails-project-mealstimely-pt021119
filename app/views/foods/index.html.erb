@@ -7,7 +7,7 @@
   <% @foods.each do |food| %>
     <% if session[:user_id] == food[:cook_id] %>
       <div class="index-box">
-      <p> Name: <%=link_to food.name, food_url(food) %></p>
+      <p> Name: <%=link_to food.name.titleize, food_url(food) %></p>
       <p><img src="<%=food.picture%>" alt="" width="150px" ></p>
       <p> Description: <%= food.description.truncate(100) %>
       <em><%= link_to "see more", food_url(food) unless food.description.size<99 %></em></p>
@@ -19,7 +19,7 @@
 <% else %>
   <% @foods.each do |food| %>
     <div class="index-box">
-    <p> Name: <%=link_to food.name, food_url(food) %></p>
+    <p> Name: <%=link_to food.name.titleize, food_url(food) %></p>
     <p><img src="<%=food.picture%>" alt="" width="150px" ></p>
     <p> Description: <%= food.description.truncate(100) %>
     <em><%= link_to "see more", food_url(food) unless food.description.size<99 %></em></p>

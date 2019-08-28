@@ -1,0 +1,33 @@
+
+<h1><%=@food.name.titleize%> Meal</h1>
+<p>Cooked by <%=@cook.name%></p>
+
+<div class="login-box">
+
+<p>Date / Time (future feature)</p>
+<img src="<%=@food.picture%>" alt="" width=200px>
+<h3>Description:</h3>
+<p><%=@food.description%></p>
+
+</div>
+
+<div class="comment-box">
+
+  <%= form_for(@comment) do |f| %>
+    <%= f.hidden_field :meal_id, :value => @meal.id %>
+    <%= f.hidden_field :user_id, :value => @eater.id %>
+    <%= f.text_area :content, class: "form-control" %>
+    <%= f.submit "Comment", class: "btn btn-primary btn-sm" %>
+  <% end %>
+
+</div>
+
+<div class="comment-box">
+
+  <%if @comments.empty?%>
+  <p>No comments so far</p>
+  <%else%>
+
+  <%end%>
+
+</div>
