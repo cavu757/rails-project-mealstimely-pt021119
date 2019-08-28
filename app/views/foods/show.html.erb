@@ -3,7 +3,15 @@
 <div class="login-box">
 
 <p><img src="<%=@food.picture%>" alt="" width="200px"></p>
-<p> Description: <%= @food.description.truncate(1000) %></p>
+<p> Description: <%= @food.description %></p>
 <p> Food Rating: <%= @food.food_rating %></p>
 
+</div>
+
+
+<div class="login-box">
+<%= form_for :meal, url: '/meals' do |f| %>
+<h4><%= f.collection_select :food_id, Food.all, :id, :name %>
+<%= f.submit "Add to Meal", class: "btn btn-primary" %></h4>
+<%end%>
 </div>

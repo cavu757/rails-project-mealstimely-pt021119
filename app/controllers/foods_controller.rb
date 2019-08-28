@@ -16,7 +16,7 @@ class FoodsController < ApplicationController
 
   def index
     @foods = Food.all
-
+    @meal = Meal.new
   end
 
   def show

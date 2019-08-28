@@ -11,6 +11,13 @@
 <p> Description: <%= food.description.truncate(100) %>
 <em><%= link_to "see more", food_url(food) unless food.description.size<99 %></em></p>
 <p> Food Rating: <%= food.food_rating %></p>
-<p><a href="<%=food_url(food)%>">Click to comment</a></p>
+<p><a href="<%=food_url(food)%>">Go to food page</a></p>
 </div>
 <%end%>
+
+<div class="login-box">
+<%= form_for :meal, url: '/meals' do |f| %>
+<h4><%= f.collection_select :food_id, Food.all, :id, :name %>
+<%= f.submit "Add to Meal", class: "btn btn-primary" %></h4>
+<%end%>
+</div>
