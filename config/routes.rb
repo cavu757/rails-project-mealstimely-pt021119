@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   resources :foods
-  resources :meals
-  resources :comments
+  resources :meals do
+    resources :comments, only: [:index, :new, :show]
+  end
   resources :users
 
   root 'welcome#home'
@@ -14,5 +15,5 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   get '/auth/facebook/callback' => 'sessions#create'
-  
+
 end
