@@ -5,7 +5,13 @@ class CommentsController < ApplicationController
   end
 
   def create
-    raise params.inspect
+    @comment = Comment.create(comment_params)
+    redirect_to meal_path(comment_params[:meal_id])
   end
 
+  private
+
+  def comment_params
+    params.require(:comment).permit(:meal_id, :user_id, :content)
+  end
 end
