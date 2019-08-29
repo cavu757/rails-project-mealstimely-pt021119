@@ -15,10 +15,10 @@ end
 def show
   @meal = Meal.find(params[:id])
   @food = Food.find(@meal[:food_id])
-  @eater = User.find(@meal[:user_id])
+  @eater = User.find(session[:user_id])
   @cook = User.find(@food.cook_id)
   @comment = Comment.new
-  @comments = @meal.comments
+  @meal_comments = @meal.comments
 end
 
 private
