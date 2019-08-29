@@ -47,6 +47,17 @@
   width: 50%;
 }
 
+.login-box-left {
+  padding: 20px;
+  display: inline-block;
+  background-color: #eeeeee;
+  border-radius: 7px;
+  vertical-align: middle;
+  margin: 10px;
+  text-align: left;
+  width: 50%;
+}
+
 .comment-box {
   padding: 10px;
   display: inline-block;
@@ -55,6 +66,17 @@
   vertical-align: middle;
   margin: 5px;
   text-align: center;
+  width: 70%;
+}
+
+.comment-box-left {
+  padding: 10px;
+  display: inline-block;
+  background-color: #eeeeee;
+  border-radius: 7px;
+  vertical-align: middle;
+  margin: 5px;
+  text-align: left;
   width: 70%;
 }
 
