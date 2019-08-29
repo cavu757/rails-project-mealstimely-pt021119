@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :meals do
-    resources :comments, only: [:index, :show]
+    resources :comments, only: [:index, :new, :show]
   end
   resources :comments, only: [:index, :new, :create, :show]
 
