@@ -1,6 +1,6 @@
 <div class="center">
 
-  <div class="info">
+  <div class="login-box">
     <% if @user[:is_cook] %>
     <p align="center"><strong>THANKS FOR BEING A COOK</strong></p>
     <% end %>
@@ -14,4 +14,10 @@
     <% end %>
   </div><br>
 
+  <div class="login-box-left">
+    <h4>Meals created:</h4>
+    <% @user.meals.each do |m| %>
+    <p><%=m.created_at.strftime("%A, %d %b %Y %l:%M %p")%>: <%= m.food.name.titleize %> Meal <%= link_to "Go to meal", meal_path(m)%></p>
+    <% end %>
+  </div>
 </div>
