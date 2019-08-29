@@ -21,3 +21,16 @@
     <%end%>
   </div>
 <%end%>
+
+<div class="login-box-left">
+
+  <p>Meals: <%=@food.meals.count%></p>
+  <p>Comments: <%=@food.comments.count%></p>
+  <p>Latest comment:
+    <% if !!@food.comments.last %>
+    <%=@food.comments.last.content %>
+    <% else %>
+    <em> <%= "No comments yet" %> </em>
+    <% end %>
+    </p>
+</div>
