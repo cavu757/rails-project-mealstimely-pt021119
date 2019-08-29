@@ -22,12 +22,14 @@
 
 </div>
 
-<div class="comment-box">
+<div class="comment-box-left">
 
-  <%if @comments.empty?%>
+  <%if @meal_comments.empty?%>
   <p>No comments so far</p>
   <%else%>
-
+  <% @meal_comments.order(created_at: :desc).each do |c| %>
+  <p><%=c.created_at.strftime("%A, %d %b %Y %l:%M %p")%>: <%=c.user.name%> said: "<%= c.content %>"</p>
+  <%end%>
   <%end%>
 
 </div>
