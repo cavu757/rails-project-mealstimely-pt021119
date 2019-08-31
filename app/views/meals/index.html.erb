@@ -1,3 +1,26 @@
 <h1>Meals#index</h1>
 
-Maybe don't need it
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><strong>Meal</strong></td>
+      <td><strong>Cook</strong></td>
+      <td><strong>Eater</strong></td>
+      <td><strong># Comments</strong></td>
+    </tr>
+  <% @meals.each do |m| %>
+    <tr>
+      <td><%= link_to "#{m.food.name.titleize} Meal", meal_path(m) %></td>
+      <td><%= User.find(m.food.cook_id).name %></td>
+      <td><%= m.user.name %></td>
+      <td><%= m.comments.count %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
