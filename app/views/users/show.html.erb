@@ -2,11 +2,11 @@
 
   <div class="login-box">
     <% if @user[:is_cook] %>
-    <p align="center"><strong>THANKS FOR BEING A COOK</strong></p>
+    <h3 align="center"><strong>COOK PROFILE</strong></h3>
     <% end %>
-    <p><strong>Name:</strong> <%= @user.name %></p>
-    <p><strong>E-mail:</strong> <%= @user.email %></p>
-    <p><strong>Rating:</strong> <%= "@user.rating" %></p>
+    <h4><strong>Name:</strong> <%= @user.name %></h4>
+    <h4><strong>E-mail:</strong> <%= @user.email %></h4>
+    <h4><strong>Rating:</strong> <%= "@user.rating" %></h4>
     <% if @user[:is_cook] %>
     <p><a href="/foods">Click here to add to your list or edit your list of food available</a></p>
     <% else %>
@@ -15,9 +15,38 @@
   </div><br>
 
   <div class="login-box-left">
-    <h4>Meals created:</h4>
-    <% @user.meals.each do |m| %>
-    <p><%=m.created_at.strftime("%A, %d %b %Y %l:%M %p")%>: <%= m.food.name.titleize %> Meal <%= link_to "Go to meal", meal_path(m)%></p>
+    <% if @user[:is_cook] %>
+      <h4>Food cooked:</h4>
+      <% if @foods_cooked.count == 0 %>
+        <p><em>None</em></p>
+      <%else%>
+        <% @foods_cooked.each do |f| %>
+        <p><%=f.created_at.strftime("%A, %d %b %Y %l:%M %p")%>: <%= f.name.titleize %>. <em><%= link_to "Go to food", food_path(f)%></em></p>
+        <%end%>
+      <%end%>
+    <%else%>
+      <h4>Meals created:</h4>
+      <% if @user.meals.count == 0 %>
+        <p><em>None</em></p>
+      <%else%>
+        <% @user.meals.each do |m| %>
+        <p><%=m.created_at.strftime("%A, %d %b %Y %l:%M %p")%>: <%= m.food.name.titleize %> Meal. <em><%= link_to "Go to meal", meal_path(m)%></em></p>
+        <% end %>
+      <%end%>
     <% end %>
   </div>
+
+  <% if @user[:is_cook] %>
+  <div class="login-box-left">
+      <h4>Meals cooked:</h4>
+      <% if @meals_cooked.count == 0 %>
+      <p><em>None</em></p>
+      <%else%>
+        <% @meals_cooked.each do |m| %>
+        <p><%=m.created_at.strftime("%A, %d %b %Y %l:%M %p")%>: <%= m.food.name.titleize %> Meal. <em><%= link_to "Go to meal", meal_path(m)%></em></p>
+        <% end %>
+      <%end%>
+  </div>
+  <% end %>
+
 </div>
