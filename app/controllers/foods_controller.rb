@@ -3,6 +3,7 @@ class FoodsController < ApplicationController
 
   def new
     not_cook
+    @food = Food.new
   end
 
   def create
@@ -22,13 +23,30 @@ class FoodsController < ApplicationController
   end
 
   def show
-    @food = Food.find(params[:id])
-    @meal = Meal.new
+    if Food.where(id: params[:id]).exists?
+      @food = Food.find(params[:id])
+      @meal = Meal.new
+      if current_user_is_cook && session[:user_id] != @food[:cook_id]
+        redirect_to foods_path
+      end
+    else
+      redirect_to foods_path
+    end
   end
 
   def edit
     not_cook
     @food = Food.find(params[:id])
+  end
+
+  def update
+    not_cook
+    @food = Food.find(params[:id])
+    if @food.update(food_params)
+      redirect_to food_path(@food)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -48,6 +66,12 @@ class FoodsController < ApplicationController
   def not_cook
     if current_user_not_cook
       redirect_to "/foods"
+    end
+  end
+
+  def current_user_is_cook
+    if current_user
+      current_user[:is_cook]
     end
   end
 
