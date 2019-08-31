@@ -6,4 +6,6 @@ class User < ApplicationRecord
   validates :name, :email, :password_digest, presence: true
   validates_confirmation_of :password
 
+  scope :eaters, -> {where(is_cook: false)}
+
 end
