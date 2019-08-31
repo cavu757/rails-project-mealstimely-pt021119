@@ -21,10 +21,12 @@ def show
   @meal_comments = @meal.comments
 end
 
+
+
 private
 
 def meal_params
-  params.require(:meal).permit(:food_id, :user_id)
+  params.require(:meal).permit(:food_id, :user_id, :cook_id)
 end
 
 end
