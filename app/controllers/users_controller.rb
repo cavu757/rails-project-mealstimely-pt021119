@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   before_action :user_new
 
+
   def new
   end
 
@@ -26,7 +27,32 @@ class UsersController < ApplicationController
       session[:user_id] = nil
       redirect_to root_path
     end
+    @foods_cooked = Food.my_food(session[:user_id])
+    @meals_cooked = Meal.my_meal(session[:user_id]) 
   end
+
+  def mostmeals
+
+    @eaters = User.eaters
+    most = 0
+    @mostmeals = []
+    @eaters.each do |e|
+      if e.meals.count > most
+        @mostmeals = []
+        most = e.meals.count
+        @mostmeals << e
+      elsif e.meals.count == most
+        most = e.meals.count
+        @mostmeals << e
+      elsif e.meals.count < most
+        @mostmeals
+      end
+    end
+    @mostmeals
+
+
+  end
+
 
   private
 
