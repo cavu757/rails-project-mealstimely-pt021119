@@ -20,7 +20,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # binding.pry
     @user = User.find(session[:user_id]) unless !User.exists?(id: session[:user_id])
     if session[:user_id].to_s != params[:id] || session[:user_id].nil?
       flash.alert = "User is not logged in. Click to Log In above."
@@ -28,7 +27,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
     @foods_cooked = Food.my_food(session[:user_id])
-    @meals_cooked = Meal.my_meal(session[:user_id]) 
+    @meals_cooked = Meal.my_meal(session[:user_id])
   end
 
   def mostmeals

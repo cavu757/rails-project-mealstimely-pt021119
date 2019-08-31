@@ -30,6 +30,7 @@ class FoodsController < ApplicationController
         redirect_to foods_path
       end
     else
+      flash.alert = "Food does not exist"
       redirect_to foods_path
     end
   end

@@ -1,7 +1,7 @@
 class MealsController < ApplicationController
 
 def index
-  @meals = Meal.all
+  @meals = Meal.order(created_at: :desc)
 end
 
 def create
@@ -13,12 +13,17 @@ def create
 end
 
 def show
-  @meal = Meal.find(params[:id])
-  @food = Food.find(@meal[:food_id])
-  @eater = User.find(session[:user_id])
-  @cook = User.find(@food.cook_id)
-  @comment = Comment.new
-  @meal_comments = @meal.comments
+  if Meal.where(id: params[:id]).exists?
+    @meal = Meal.find(params[:id])
+    @food = Food.find(@meal[:food_id])
+    @eater = User.find(session[:user_id])
+    @cook = User.find(@food.cook_id)
+    @comment = Comment.new
+    @meal_comments = @meal.comments
+  else
+    flash.alert = "Meal does not exist."
+    redirect_to root_path
+  end
 end
 
 
