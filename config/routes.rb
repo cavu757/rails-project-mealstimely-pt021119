@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   end
   resources :comments, only: [:index, :new, :create, :show]
 
+  get '/mostmeals', to: 'users#mostmeals'
+
 end
