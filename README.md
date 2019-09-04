@@ -8,6 +8,14 @@ Fork database from https://github.com/cavu757/rails-project-mealstimely-pt021119
 
 In your terminal window, `cd` into the directory, `bundle install` all the gems, `rake db:migrate` for the tables and `rake db:seed` for the default data.  You can use default data or create your own eaters and cooks (users).
 
+Some default data to use:
+
+email: "cook1@email.com"
+password: "cook1"
+
+email: "user2@email.com"
+password: "user2"
+
 Run app by entering `thin start --ssl` in the terminal window.  This runs a secure server.  You have to accept the security warnings to proceed.
 
 Visit https://localhost:3000/.
