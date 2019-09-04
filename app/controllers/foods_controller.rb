@@ -7,7 +7,6 @@ class FoodsController < ApplicationController
   end
 
   def create
-    binding.pry
     @food = Food.find_or_create_by(name: food_params[:name]) do |f|
       f.name = food_params[:name]
       f.picture = food_params[:picture]
